@@ -1,6 +1,8 @@
 from setuptools import find_packages
 from setuptools import setup
 
+import fastentrypoints
+
 setup(
     name='ros2cli',
     version='0.8.6',
