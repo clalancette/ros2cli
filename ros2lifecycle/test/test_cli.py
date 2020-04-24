@@ -187,7 +187,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
                 yield lifecycle_command
         cls.launch_lifecycle_command = launch_lifecycle_command
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_lifecycle_node_transitions(self):
         with self.launch_lifecycle_command(
             arguments=['list', 'test_lifecycle_node']
@@ -207,7 +207,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_all_lifecycle_node_transitions(self):
         with self.launch_lifecycle_command(
             arguments=['list', 'test_lifecycle_node', '-a']
@@ -220,7 +220,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_all_lifecycle_hidden_node_transitions_without_hidden_flag(self):
         with self.launch_lifecycle_command(
             arguments=['list', '_hidden_test_lifecycle_node', '-a']
@@ -233,7 +233,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_all_lifecycle_hidden_node_transitions_with_hidden_flag(self):
         with self.launch_lifecycle_command(
             arguments=['list', '--include-hidden-nodes', '_hidden_test_lifecycle_node', '-a']
@@ -246,7 +246,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_lifecycle_nodes(self):
         with self.launch_lifecycle_command(arguments=['nodes']) as lifecycle_command:
             assert lifecycle_command.wait_for_shutdown(timeout=20)
@@ -257,7 +257,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_all_lifecycle_nodes(self):
         with self.launch_lifecycle_command(arguments=['nodes', '-a']) as lifecycle_command:
             assert lifecycle_command.wait_for_shutdown(timeout=20)
@@ -271,7 +271,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_count_lifecycle_nodes(self):
         with self.launch_lifecycle_command(arguments=['nodes', '-c']) as lifecycle_command:
             assert lifecycle_command.wait_for_shutdown(timeout=20)
@@ -280,7 +280,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
         assert len(output_lines) == 1
         assert int(output_lines[0]) == 1
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_count_all_lifecycle_nodes(self):
         with self.launch_lifecycle_command(arguments=['nodes', '-a', '-c']) as lifecycle_command:
             assert lifecycle_command.wait_for_shutdown(timeout=20)
@@ -289,7 +289,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
         assert len(output_lines) == 1
         assert int(output_lines[0]) == 2
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_set_lifecycle_node_invalid_transition(self):
         with self.launch_lifecycle_command(
             arguments=['set', '/test_lifecycle_node', 'noop']
@@ -306,7 +306,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_set_nonexistent_lifecycle_node_state(self):
         with self.launch_lifecycle_command(
             arguments=['set', '/nonexistent_test_lifecycle_node', 'configure']
@@ -319,7 +319,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_set_hidden_lifecycle_node_transition(self):
         with self.launch_lifecycle_command(
             arguments=['set', '/_hidden_test_lifecycle_node', 'configure']
@@ -332,7 +332,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_get_nonexistent_lifecycle_node_state(self):
         with self.launch_lifecycle_command(
             arguments=['get', '/nonexistent_test_lifecycle_node']
@@ -345,7 +345,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_get_hidden_lifecycle_node_state(self):
         with self.launch_lifecycle_command(
             arguments=['get', '/_hidden_test_lifecycle_node']
@@ -369,7 +369,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_get_lifecycle_node_state(self):
         with self.launch_lifecycle_command(
             arguments=['get', '/test_lifecycle_node']
@@ -382,7 +382,7 @@ class TestROS2LifecycleCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_node_lifecycle(self):
         lifecycle = [
             ('unconfigured [1]', 'configure'),

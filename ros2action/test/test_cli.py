@@ -143,7 +143,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             strict=False
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_fibonacci_info(self):
         with self.launch_action_command(arguments=['info', '/fibonacci']) as action_command:
             assert action_command.wait_for_shutdown(timeout=10)
@@ -159,7 +159,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             strict=False
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_fibonacci_info_with_types(self):
         with self.launch_action_command(arguments=['info', '-t', '/fibonacci']) as action_command:
             assert action_command.wait_for_shutdown(timeout=10)
@@ -175,7 +175,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             strict=False
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_fibonacci_info_count(self):
         with self.launch_action_command(arguments=['info', '-c', '/fibonacci']) as action_command:
             assert action_command.wait_for_shutdown(timeout=10)
@@ -190,7 +190,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             strict=False
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list(self):
         with self.launch_action_command(arguments=['list']) as action_command:
             assert action_command.wait_for_shutdown(timeout=10)
@@ -201,7 +201,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_with_types(self):
         with self.launch_action_command(arguments=['list', '-t']) as action_command:
             assert action_command.wait_for_shutdown(timeout=10)
@@ -211,7 +211,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             text=action_command.output, strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_list_count(self):
         with self.launch_action_command(arguments=['list', '-c']) as action_command:
             assert action_command.wait_for_shutdown(timeout=10)
@@ -220,7 +220,7 @@ class TestROS2ActionCLI(unittest.TestCase):
         assert len(command_output_lines) == 1
         assert int(command_output_lines[0]) == 1
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_send_fibonacci_goal(self):
         with self.launch_action_command(
             arguments=[
@@ -237,7 +237,7 @@ class TestROS2ActionCLI(unittest.TestCase):
             text=action_command.output, strict=True
         )
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_send_fibonacci_goal_with_feedback(self):
         with self.launch_action_command(
             arguments=[

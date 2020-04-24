@@ -90,7 +90,7 @@ class TestROS2TopicEchoPub(unittest.TestCase):
         self.node.destroy_node()
         rclpy.shutdown(context=self.context)
 
-    @launch_testing.markers.retry_on_failure(times=5)
+    @launch_testing.markers.retry_on_failure(times=2)
     def test_pub_basic(self, launch_service, proc_info, proc_output):
         params = [
             ('/clitest/topic/pub_basic', False, True),
@@ -176,7 +176,7 @@ class TestROS2TopicEchoPub(unittest.TestCase):
                     # Cleanup
                     self.node.destroy_subscription(subscription)
 
-    @launch_testing.markers.retry_on_failure(times=5)
+    @launch_testing.markers.retry_on_failure(times=2)
     def test_echo_basic(self, launch_service, proc_info, proc_output):
         params = [
             ('/clitest/topic/echo_basic', False, True),

@@ -120,7 +120,7 @@ class TestROS2NodeCLIWithDuplicateNodeNames(unittest.TestCase):
                 yield node_command
         cls.launch_node_command = launch_node_command
 
-    @launch_testing.markers.retry_on_failure(times=5, delay=1)
+    @launch_testing.markers.retry_on_failure(times=2, delay=1)
     def test_info_warning(self):
         with self.launch_node_command(arguments=['info', '/complex_node']) as node_command:
             assert node_command.wait_for_shutdown(timeout=20)
